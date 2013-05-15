@@ -4,6 +4,9 @@ const port = 8888;
 
 var http = require("http");
 var url = require("url");
+var fs = require("fs");
+
+var resourcePattern = /\.(js|css|png|jpeg|jpg)$/;
 
 function reply(response, fn) {
   fn(function(status, type, content) {
@@ -28,6 +31,15 @@ function start(route) {
         reply(response, impl);
         return;
       }
+    }
+    
+    if (resourcePattern.test(pathname)) {
+      var resourcePath = __dirname + "/public/" + pathname;
+      var resource = fs.readFileSync(resourcePath);
+      // TODO response with correct content-type
+      response.writeHead(200, {"Content-Type": "octet-stream"});
+      response.write(resource);
+      response.end();
     }
     response.writeHead(404, {"Content-Type": "text/plain"});
     response.write("page not found!");
