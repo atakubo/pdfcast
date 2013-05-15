@@ -6,7 +6,7 @@ var http = require("http");
 var url = require("url");
 var fs = require("fs");
 
-var resourcePattern = /\.(js|css|png|jpeg|jpg)$/;
+var resourcePattern = /\.(js|css|png|jpeg|jpg|pdf)$/;
 
 function reply(response, fn) {
   fn(function(status, type, content) {

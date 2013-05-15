@@ -2,6 +2,10 @@
 html
   head
     title #{title}
+    script(src="/js/pdf.js", type="text/javascript")
+    link(href="/css/default.css", rel="stylesheet")
   body
     h3 #{title}
-    #main sample content
+    #main
+      canvas#pdf_canvas(class="view_area", width=500, height=500) 
+    script(src="/js/sample-pdf.js", type="text/javascript")
