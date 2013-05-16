@@ -12,7 +12,10 @@ html
       .droparea
         canvas#pdf_canvas(class="view_area", width=500, height=500) 
       input(type="button", onclick="copy()", value="copy")
-      #copy_area
-        img#copy_img(width=500, height=500)
+      input(type="button", onclick="prev()", value="prev")
+      input(type="button", onclick="next()", value="next")
+      span#page_info
+    #copy_area
+      img#copy_img(width=500, height=500)
     script(src="/js/pdfcast.js", type="text/javascript")
     script(src="/js/filehelper.js", type="text/javascript")
