@@ -16,11 +16,11 @@ function loadPdf(url) {
     pdfDoc = pdf;
     curPage = 1;
     bindPaging();
-    renderPdf(curPage);
+    renderPdf(curPage, send);
   });
 }
 
-function renderPdf(pageNum) {
+function renderPdf(pageNum, completed) {
     $("#page_info").text(pageNum.toString() + " / " + pdfDoc.numPages.toString());
     // Using promise to fetch the page
     pdfDoc.getPage(pageNum).then(function(page) {
@@ -42,18 +42,22 @@ function renderPdf(pageNum) {
         canvasContext: context,
         viewport: viewport
       };
-      page.render(renderContext);
+      page.render(renderContext).then(completed);
     });
+}
+
+function send() {
+  sendImage("page" + curPage, $("#pdf_canvas")[0].toDataURL());
 }
 
 function next() {
   if(!pdfDoc || curPage == pdfDoc.numPages) return;
-  renderPdf(++curPage);
+  renderPdf(++curPage, send);
 }
 
 function prev() {
   if(!pdfDoc || curPage == 1) return;
-  renderPdf(--curPage);
+  renderPdf(--curPage, send);
 } 
 
 function bindPaging() {
@@ -73,6 +77,6 @@ function unbindPaging() {
 
 function copy() {
   $("#copy_img").attr("src", $("#pdf_canvas")[0].toDataURL());
+  send();
 }
 
-bindPaging();

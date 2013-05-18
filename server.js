@@ -6,6 +6,8 @@ var http = require("http");
 var url = require("url");
 var fs = require("fs");
 
+var io = require("./socket");
+
 var resourcePattern = /\.(js|css|png|jpeg|jpg|pdf)$/;
 
 function reply(response, fn) {
@@ -18,7 +20,7 @@ function reply(response, fn) {
 
 // initializing and starting server
 function start(route) {
-  http.createServer(function(request, response) {
+  var server = http.createServer(function(request, response) {
     console.log("request received");
 
     var pathname = url.parse(request.url).pathname;
@@ -45,6 +47,8 @@ function start(route) {
     response.write("page not found!");
     response.end();
   }).listen(port);
+
+  io.init(server);
 
   console.log("server started: " + port)
 }
