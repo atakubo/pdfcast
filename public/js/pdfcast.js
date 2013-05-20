@@ -66,7 +66,6 @@ function bindPaging() {
 // canvas to image
 
 function copy() {
-  $("#copy_img").attr("src", $("#pdf_canvas")[0].toDataURL());
   send();
 }
 
