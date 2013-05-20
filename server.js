@@ -8,7 +8,7 @@ var fs = require("fs");
 
 var io = require("./socket");
 
-var resourcePattern = /\.(js|css|png|jpeg|jpg|pdf)$/;
+var resourcePattern = /\.(js|css|png|jpeg|jpg|pdf|gif)$/;
 
 function reply(response, fn) {
   fn(function(status, type, content) {
