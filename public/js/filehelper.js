@@ -11,4 +11,7 @@ var opts = {
   }
 };
 
-$(".droparea").fileReaderJS(opts);
+$(document).ready(function() {
+  $(".droparea").fileReaderJS(opts);
+});
+

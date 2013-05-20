@@ -15,7 +15,6 @@ function loadPdf(url) {
   PDFJS.getDocument(url).then(function(pdf) {
     pdfDoc = pdf;
     curPage = 1;
-    bindPaging();
     renderPdf(curPage, send);
   });
 }
@@ -64,15 +63,6 @@ function bindPaging() {
   $("#pdf_canvas").on("click", next);
 };
 
-function unbindPaging() {
-
-};
-
-
-
-// websocket 
-
-
 // canvas to image
 
 function copy() {
@@ -80,3 +70,6 @@ function copy() {
   send();
 }
 
+$(document).ready(function() {
+  bindPaging();
+});
