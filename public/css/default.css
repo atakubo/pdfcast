@@ -1,4 +1,10 @@
 
-.view_area {
+.page {
   border: solid 1px black;
+} 
+
+#view {
+  margin-left: auto;
+  margin-right: auto;
+  width: 1024px;
 }

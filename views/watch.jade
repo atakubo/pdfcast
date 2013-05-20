@@ -3,14 +3,15 @@ html
   head
     title #{title}
     script(src="/js/jquery-2.0.0.min.js", type="text/javascript")
+    script(src="/js/jquery.bxslider.min.js", type="text/javascript")
     script(src="/socket.io/socket.io.js", type="text/javascript")
     script(src="/js/watch.js", type="text/javascript")
+    link(href="/css/jquery.bxslider.css", rel="stylesheet")
     link(href="/css/default.css", rel="stylesheet")
   body
     h3 #{title}
     #main 
-      #view(class="view_area", width=1024, height=700)
-        img#page
-    #dummy(style="display:none")
-      a#dummy_img(class="slide", href="/img/marylou.jpg") test
-
+      #view
+        img#main_img(class="page", width=1024)
+      #slider(class="slider_area", width=1024, height=700)
+        ul#list(class="bxslider")
